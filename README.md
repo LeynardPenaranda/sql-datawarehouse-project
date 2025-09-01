@@ -44,6 +44,11 @@ This project is licensed under the (MIT License). You are free to use, modify th
 Hi There! I'm **Leynard M Peñaranda**, I'm a student passionate to learn and grow to get into **Data Engineering**.
 
 
+# Data Architecture
+---
+The data architecture for this project follows Medallion Architecture Bronze, Silver, and Gold layers:
+![Alt text](https://github.com/LeynardPenaranda/sql-datawarehouse-project/blob/main/docs/Data%20Architecture.png)
+
 
 
 
