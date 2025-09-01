@@ -43,5 +43,22 @@ and **fact tables** for specific business metrics.
 | subcategory    | NVARCHAR(50)  | A more specific grouping within the category (e.g., Smartphones under Electronics). |
 | maintenance    | NVARCHAR(50)  | Indicates whether the product requires ongoing maintenance or has a service plan (e.g., 'Yes', 'No'). |
 | product_cost   | INT | The cost of producing or procuring the product, often used for margin and profitability calculations. |
-| product_line   | NVARCHAR(50)  | A higher-level grouping that represents a collection of related products (e.g., 'Premium Line'). |
+| product_line   | NVARCHAR(50)  | A higher-level grouping that represents a collection of related products (e.g., 'Road, Mountain'). |
 | start_date     | DATE          | The date when the product became available or active in the system. Useful for product lifecycle tracking. |
+
+**3. gold.fact_sales**
+ - **Purpose**: Stores transactional sales data at the order line level. This fact table links products and customers through surrogate keys and provides the measures necessary for sales performance, revenue, and profitability analysis.
+ - **Columns**:
+
+| Column Name    | Data Type     | Description |
+|----------------|---------------|-------------|
+| order_number   | NVARCHAR(50)  | The unique business identifier for the sales order. Can be used to group multiple line items belonging to the same order. |
+| product_key    | INT (FK)      | Foreign key referencing **gold.dim_products**. Identifies the product being sold. |
+| customer_key   | INT (FK)      | Foreign key referencing **gold.dim_customers**. Identifies the customer who placed the order. |
+| order_date     | DATE          | The date when the order was created or confirmed. Used for trend and time-series analysis. |
+| shipping_date  | DATE          | The date when the order was shipped to the customer. Useful for logistics and delivery performance analysis. |
+| due_date       | DATE          | The date by which the order is expected to be delivered or fulfilled. Useful for SLA and commitment tracking. |
+| sales_amount   | DECIMAL(18,2) | The total monetary value of the sale (quantity × price). Used as the primary revenue measure. |
+| quantity       | INT           | The number of units sold for the given product line item. |
+| price          | INT | The unit price of the product at the time of sale. Helps derive discounts, margins, and average selling prices. |
+
