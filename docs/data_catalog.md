@@ -27,3 +27,21 @@ and **fact tables** for specific business metrics.
 | birthdate      | DATE      | The date of birth of the customer, useful for age-based analytics. (e.g '1971-10-06')|
 | create_date    | DATE      | The date when the customer record was first created in the system. Often used for tracking data freshness or customer onboarding date. |
 
+
+**2. gold.dim_products**
+ - **Purpose**: Stores product details, including categorization, cost, and lifecycle information. This dimension is used to analyze sales, profitability, and product performance across categories and time periods.
+ - **Columns**:
+
+| Column Name    | Data Type     | Description |
+|----------------|---------------|-------------|
+| product_key    | INT           | Surrogate key used as the primary identifier in the dimension table. It is system-generated to uniquely identify each product record. |
+| product_id     | INT           | Business or operational identifier for the product, typically coming from the source system. |
+| product_number | NVARCHAR(50)  | Alphanumeric product number often used in catalogs, invoices, or ERP systems. |
+| product_name   | NVARCHAR(100) | The name of the product as shown in listings, catalogs, or reports. |
+| category_id    | INT           | Identifier linking the product to its category. Useful for joining with category-related tables. |
+| category       | NVARCHAR(50)  | The main category the product belongs to (e.g., Electronics, Apparel). |
+| subcategory    | NVARCHAR(50)  | A more specific grouping within the category (e.g., Smartphones under Electronics). |
+| maintenance    | NVARCHAR(50)  | Indicates whether the product requires ongoing maintenance or has a service plan (e.g., 'Yes', 'No'). |
+| product_cost   | INT | The cost of producing or procuring the product, often used for margin and profitability calculations. |
+| product_line   | NVARCHAR(50)  | A higher-level grouping that represents a collection of related products (e.g., 'Premium Line'). |
+| start_date     | DATE          | The date when the product became available or active in the system. Useful for product lifecycle tracking. |
